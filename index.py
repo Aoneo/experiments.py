@@ -187,6 +187,45 @@ def acceptPass(password):
     return True
     
 
+        #########
+
+#   lst = eval(input("Enter a list of integers: "))   # The input
+
+def minVal(l):
+    m = l[0]
+    i = 0
+    for x in l:
+        if x < m:
+            m = x
+            p = i
+        i += 1
+    return m, p
+
+def maxVal(l):
+    m = l[0]
+    i = 0
+    for x in l:
+        if x > m:
+            m = x
+            p = i
+        i += 1
+    return m, p
+
+
+#  With a while loop
+
+def maxWhile(l):
+    m = l[0]
+    i = 0
+    while i < len(l):
+        if l[i] > m:
+            m = l[i]
+            p = i
+        i += 1
+    return m, p
+
+
+
 #######################################
 
 
@@ -315,6 +354,14 @@ class universityStudent(universityMember):
 
 
 #######################################
+
+
+lst = [[1,1], [4,7,8,3], [2,2,7], [32]]
+
+
+lst.sort()
+
+print(lst)
 
 
 
