@@ -224,6 +224,16 @@ def maxWhile(l):
         i += 1
     return m, p
 
+#  With bubble sort
+
+def bubbleSort(l):
+    for i in range(len(l)-1,0,-1):
+        for x in range(i):
+            if l[x]>l[x+1]:
+                temp = l[x]
+                l[x] = l[x+1]
+                l[x+1] = temp
+
 
 
 #######################################
@@ -356,12 +366,10 @@ class universityStudent(universityMember):
 #######################################
 
 
-lst = [[1,1], [4,7,8,3], [2,2,7], [32]]
 
 
-lst.sort()
 
-print(lst)
+
 
 
 
