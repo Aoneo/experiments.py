@@ -15,3 +15,15 @@
 
 filename = "numbers1.txt"
 
+def fromfile(s):
+    f = open(s,"r")
+    r = f.readlines()
+    N = int(r[0])
+    l2= r[1].split()
+    n = []
+    for x in range(N):
+        print(x)
+        n.append(l2[x])
+    return n
+
+print(fromfile(filename))

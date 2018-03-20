@@ -14,4 +14,20 @@
 #### Κατεβάστε και τα βοηθητικά αρχεία numbers*.txt στον ίδιο κατάλογο με user.py, tester.py
 
 
-filename = "numbers1.txt"
+filename = "numbers2.txt"
+
+def addnumbers(s):
+    f = open(filename, "r")
+    l = f.readlines()
+    f.close()
+    n=0
+    for x in l:
+        for i in x.split():
+            n += float(i)
+    return n
+    
+print(addnumbers(filename))
+
+# f = open(filename, "r")
+# l = f.readlines()
+# print(l)

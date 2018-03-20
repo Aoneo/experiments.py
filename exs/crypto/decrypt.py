@@ -17,12 +17,12 @@ be reduced to 1-26. See: (x - (26*(x // 26)).
 
 Common letters in the english language are (in descending order):
 "E","N","I","S","R" (subject to verification)
+by simply reading the outputs or running them against a
 
 The statistical approach works well for long sentences since one has 
 a greater samplesize for distribution analysis.
 If two or more letters appear the same amount of times, you have to 
 check which key is actually correct, either
-by simply reading the outputs or running them against a 
 distribution_dict of that language.
 
 """
@@ -74,13 +74,16 @@ def flatten(number):
     return number - (26*(number//26))
 
 def find_key_from_cipher(cipher_text):
-    index_of_most_common_letter = 4 #Index of 'e'
+    index_of_most_common_letter = 6 #Index of 'e'
     #Calculate distribution
     distribution_dict = analyse_letter_distribution(cipher_text)
+    print("distribution_dict = ", distribution_dict)
     #Get common letters
     common_letters = sorted(distribution_dict, key=distribution_dict.get, reverse=True)
+    print("common_letters = ", common_letters)
     #Use most common letter to get key
     key = ALPHABET.find(common_letters[0].upper()) - index_of_most_common_letter
+    print("key = ", key)
     return key
 
 def analyse_letter_distribution(cipher_text):
