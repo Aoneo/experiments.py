@@ -1,0 +1,51 @@
+
+#Φτιάξτε μια συνάρτηση η οποία να δέχεται ως όρισμα ένα λεξικό. Τα κλειδιά του λεξικού είναι
+#ο αριθμός ενός τηλεφώνου. Οι τιμές του λεξικού είναι ένα tuple που περιέχει το Όνομα και το
+#Επώνυμο του κατόχου του τηλεφώνου. Π.χ. d={393875:('Βασίλης','Χριστόπουλος'), 458832:
+#('Αλέξης','Ομορφούλης'), 393939:('Αλίκη','Ασχημούλα')}. Η συνάρτηση θα επιστρέφει μια
+#λίστα, με tuples, με 3 στοιχεία, όπου κάθε tuple θα εχει τη μορφή (Όνομα, Επώνυμο, Αρ.
+#Τηλ.). Οι λίστες θα είναι ταξινομημένες αλβαφητικά ως προς το Επώνυμο με τη μέθοδο
+#selection sort.
+
+
+
+def f(d):
+# ορισμός της συνάρτησης
+	M = []
+	for x in d:
+		d[x] = d[x] + (x,)
+		M.append(d[x])
+	return selection_sort(M)
+
+def selection_sort(L):
+#"""Reorder the values in L from smallest to largest."""
+    i = 0
+    while i != len(L):
+        smallest = find_min(L, i)
+        L[i], L[smallest] = L[smallest], L[i]
+        i = i + 1
+    return L
+
+
+def find_min(L, b):
+#"""Return the index of the smallest value in L[b:]."""
+    smallest = b # The index of the smallest so far.
+    i = b + 1
+    while i != len(L):
+        if my_less(L[i],L[smallest]):
+            # We found a smaller item at L[i].
+            smallest = i
+        i = i + 1
+    return smallest
+
+	
+def my_less(a,b):
+	if a[1]< b[1]:
+		return False
+	else:
+		return True
+	
+	
+# Κυρίως πρόγραμμα
+L = eval(input("Give dict of phones and names: "))
+print (f(L))

@@ -1,4 +1,13 @@
 
+def avgN(n1, n2):
+    return (n1 + n2) / 2
+
+def avgL(lst):
+    n = 0
+    for i in lst:
+        n += i
+    return n / len(lst)
+
 def selectionSorting(inputList):
     l = list(inputList)
     key = 0
@@ -14,7 +23,7 @@ def findMinPlace(inputList, key):
     minValue = l[key]
     place = key
     for i in range(key, len(l)):
-        if letterSort(l[i], minValue, 1):
+        if l[i] <= minValue:
             minValue = l[i]
             place = i
     return place
@@ -104,6 +113,83 @@ def letterSort(fname, sname, cname):
         return False
 
 
-inputFile = input("Give name of file: ")
+#Φτιάξτε μια συνάρτηση η οποία να δέχεται ως όρισμα 
+#ένα λεξικό. Τα κλειδιά του λεξικού είναι τα ονόματα 
+#φοιτητών. Οι τιμές του λεξικού είναι ένα άλλο λεξικό που 
+#περιέχει ως κλειδιά τα μαθήματα που έχει περάσει ο 
+#φοιτητής και τιμές τους αντίστοιχους βαθμούς. 
+#Π.χ. d={"Mike":{"MEM107":6, "MEM108":9}, 
+#        "Peter":{"MEM105":6, "MEM107":9}}.
+# Η συνάρτηση θα επιστρέφει δύο λίστες, στην πρώτη θα είναι 
+# τα ονόματα φοιτητών και στη δεύτερη ο μέσος όρος των 
+# βαθμών των μαθημάτων που έχει περάσει ο αντίστοιχος 
+# φοιτητής της πρώτης λίστας. Οι λίστες θα είναι 
+# ταξινομημένες αλφαβητικά με τη μέθοδο selection sort.
 
-nameSort(inputFile)
+
+universityStudentGrades = {"Mike":{"MEM107":6, "MEM108":9}, "Peter":{"MEM105":5, "MEM107":8}}
+
+def avgGrades(dictionary):
+    names = []
+    grades = []
+    returnDict = {}
+
+    for i in dictionary:
+        names.append(i)
+        grades.append( avgL( list( dictionary[i].values() ) ) )
+    for x in range(len(names)):
+        returnDict[names[x]] = grades[x]
+    return selectionSorting( returnDict )
+
+
+
+
+
+
+
+
+###### HOMEWORK 28/3 ######
+#                         #
+#  Make dictionarySort()  #
+#                         #
+###########################
+
+
+# ready-made
+
+d = { 'a': 1, 'f': 6, 'x':24, 'e':5 }
+
+def readyMadeDictionarySort(d, query = 'k'):
+    r = {}
+    if query == 'k':
+        for key in sorted(d.keys()):
+            r[key] = d[key]
+    else:
+        for i in sorted(d.values()): ### KeyError: 1
+            r[i] = d[i]
+    return r
+
+
+# custom algorithm
+
+def order(x, y):    
+    if x[1] < y[1]:
+        return x, y
+    else:
+        return y, x
+
+def dictionaryBubbleSort(d, query = 'v'):
+    dictionaryItems = []
+    if query == 'k':
+        for j in d:
+            v = (j, d[j])
+            dictionaryItems.append(v)
+    elif query == 'v':
+        for j in d:
+            v = (d[j], j)
+            dictionaryItems.append(v)
+    for x in range(len(dictionaryItems) - 1):
+        for i in range(len(dictionaryItems) - 1):
+            dictionaryItems[i], dictionaryItems[i+1] = order(dictionaryItems[i], dictionaryItems[i+1])
+    return dictionaryItems
+

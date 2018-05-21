@@ -1,0 +1,71 @@
+
+#Έχουμε μια ανακατεμένη τράπουλα όπως πριν και θέλουμε να μοιράσουμε σε 2 παίκτες 7 χαρτιά (τροποποιήστε την προηγούμενη συνάρτηση ώστε να επιστρέφει 2 λίστες με 7 χαρτιά). Επαναλαβεται Ν φορές ώστε να υπολογίστε την πιθανότητα να έχει ο ένας από τους 2 παίκτες έναν άσσο. [Numpy9-cards2.py]Numpy9-cards2.py
+
+import random
+
+def deal():
+    color=['Κούπα','Μπαστούνι','Σπαθί','Καρό']
+    val=['1','2','3','4','5','6','7','8','9','10','Βαλές','Ντάμα','Ρήγας']
+    deck=[]
+    for c in color:
+    	for v in val:
+    		deck.append(v+'_'+c)
+    random.shuffle(deck)
+    A = random.sample(deck,7) 
+    for x in A: # gia na mhn ta xrhsimopoiw sthn epomenh moirasia
+    	deck.remove(x) 
+    B = random.sample(deck,7)
+    return A,B 
+    
+# b tropos
+def deal2():
+    color=['Κούπα','Μπαστούνι','Σπαθί','Καρό']
+    val=['1','2','3','4','5','6','7','8','9','10','Βαλές','Ντάμα','Ρήγας']
+    deck=[]
+    for c in color:
+    	for v in val:
+    		deck.append(v+'_'+c)
+    random.shuffle(deck)
+    A = []
+    B = []
+    for i in range(7):
+	    a = random.sample(deck,1) # dinei lista me ena stoixeio 
+	    deck.remove(a[0])
+	    A.append(a[0])
+	    b = random.sample(deck,1)
+	    deck.remove(b[0])
+	    B.append(b[0])
+    return A,B 
+    
+    
+####### Δημιουργούμε την τράπουλα
+
+A, B = deal()
+
+N = 100
+M = 0
+
+for i in range(N):
+	A, B = deal()
+	count1A, count1B = 0, 0
+	print (A, B)
+	for x in A:
+		if '1' in x:
+			count1A += 1
+	for y in B:
+		if '1' in x:
+			count1B += 1
+	if count1A == 1 or count1B ==1:
+		M+=1
+		print (M)
+
+print ("H pithanothta einai=%s" %(M/N))
+	
+	
+	
+	
+	
+	
+	
+	
+	
